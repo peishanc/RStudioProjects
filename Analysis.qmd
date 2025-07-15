@@ -5,11 +5,54 @@ format: html
 editor: visual
 ---
 
-## Introduction
+## Project 1 Analysis
 
-You can add options to executable code like this
+**Loading 'bac.csv':**
 
 ```{r}
-# Loading the file
-
+bac <- read.csv('/Users/peishan/Downloads/stat107 work/homeworks/bac.csv')
+bac
 ```
+
+**Regression Summary:**
+
+```{r}
+source('SimpleRegression.R')
+reg_model <- simple_regression(bac$bac, bac$beers)
+display_report(reg_model)
+```
+
+**Visualizing the Data:**
+
+```{r}
+plot(bac$beers, bac$bac,
+     main = "BAC vs. Beers",
+     xlab = "Beers Consumed", ylab = "Blood Alcohol Content")
+abline(a = reg_model$coefficients[1], b = reg_model$coefficients[2], col = "red", lwd = 2)
+```
+
+**Checking If Assumptions Are Reasonable:**
+
+```{r}
+# Histogram
+hist(reg_model$residuals,
+     main = "Histogram of Residuals",
+     xlab = "Residuals",
+     col = "lightpink", border = "white")
+
+# QQ Plot
+qqnorm(reg_model$residuals)
+qqline(reg_model$residuals, col = "purple")
+
+# Residual VS. Fitted
+plot(reg_model$fitted.values, reg_model$residuals,
+     main = "Residuals vs Fitted Values",
+     xlab = "Fitted Values", ylab = "Residuals")
+abline(h = 0, col = "blue")
+```
+
+**Interpretation of Coefficients:**
+
+COMMENT
+
+etc...
