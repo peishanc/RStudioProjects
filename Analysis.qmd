@@ -53,6 +53,11 @@ abline(h = 0, col = "blue")
 
 **Interpretation of Coefficients:**
 
-COMMENT
+From the visualization comparing BAC and number of beers consumed, the relationship is linear and indicates that the number of beers consumed is positively correlated with BAC. We can also see that the correlation is strong.
 
-etc...
+Histogram of Residuals: we can see that the distribution of the residuals are roughly symmetrical, indicating that there are no major outliers in the data. The model appears fairly random and spread out, meaning that there is a linear regression
+
+Q-Q Plot: The points are close to the line, meaning that there is a normal distribution.
+
+Residuals vs. Fitted Values: This plot shows no clear patterns or trends, indicating that the model fits the data well
+
