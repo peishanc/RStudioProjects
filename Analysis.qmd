@@ -5,24 +5,37 @@ format: html
 editor: visual
 ---
 
-## Project 1 Analysis
+# Project 1 Analysis
 
-**Loading 'bac.csv':**
+## Introduction
+
+This report performs a simple linear regression analysis to examine the relationship between the number of beers consumed and measured blood alcohol content (bac). We used a dataset of 16 students and implemented the model using base R functions developed in SimpleRegression R script.
+
+## **Loading 'bac.csv':**
 
 ```{r}
 bac <- read.csv('/Users/peishan/Downloads/stat107 work/homeworks/bac.csv')
-bac
+head(bac)
 ```
 
-**Regression Summary:**
+The 'bac.csv' dataset contains 16 observations with the variables 'student', 'beers', 'bac', which represent the ID number of each student, the number of beers consumed, and the blood alcohol content respectively. 'beers' and 'bac' are numeric. "bac' will be modeled as a linear function of 'beers'.
+
+## **Regression Summary:**
 
 ```{r}
 source('SimpleRegression.R')
 reg_model <- simple_regression(bac$bac, bac$beers)
 display_report(reg_model)
+
 ```
 
-**Visualizing the Data:**
+$$
+\widehat{\text{BAC}} = -0.01270060 + 0.01796376 \times \text{beers}
+$$
+
+where β₀ = -0.01270060: The estimated BAC for someone who consumed 0 beers, and β₁ = 0.01796376: Each additional beer increases BAC by approximately this amount.
+
+Note: Negative BAC is a common artifact in linear regression due to model fitting, thus a negative β₀ when no beers were consumed may not be physically meaningful.
 
 ```{r}
 plot(bac$beers, bac$bac,
@@ -31,7 +44,7 @@ plot(bac$beers, bac$bac,
 abline(a = reg_model$coefficients[1], b = reg_model$coefficients[2], col = "red", lwd = 2)
 ```
 
-**Checking If Assumptions Are Reasonable:**
+## **Checking If Assumptions Are Reasonable:**
 
 ```{r}
 # Histogram
@@ -51,13 +64,16 @@ plot(reg_model$fitted.values, reg_model$residuals,
 abline(h = 0, col = "blue")
 ```
 
-**Interpretation of Coefficients:**
+## **Interpretation of Coefficients**
 
-From the visualization comparing BAC and number of beers consumed, the relationship is linear and indicates that the number of beers consumed is positively correlated with BAC. We can also see that the correlation is strong.
+From the visualization comparing BAC and number of beers consumed, the relationship is linear and indicates that the number of beers consumed is positively correlated with BAC. We can also see that the correlation is strong. The slope coefficient (β₁ = 0.01796376) indicates that each additional beer consumed is associated with an approximate increase of 0.018 in BAC, and the intercept (β₀ = -0.01270060) represents the estimated BAC when no beers are consumed (negative value may be physically not meaningful, as previously mentioned). The slope coefficient is statistically significant with a very small p-value (essentially 0), indicating strong evidence that beer consumption is predictive of BAC.
 
-Histogram of Residuals: we can see that the distribution of the residuals are roughly symmetrical, indicating that there are no major outliers in the data. The model appears fairly random and spread out, meaning that there is a linear regression
+**Histogram:** We can see that the distribution of the residuals are roughly symmetrical, indicating that there are no major outliers in the data. The model appears fairly random and spread out, meaning that there is a linear regression.
 
-Q-Q Plot: The points are close to the line, meaning that there is a normal distribution.
+**Q-Q Plot:** The points are close to the line, meaning that there is a normal distribution.
 
-Residuals vs. Fitted Values: This plot shows no clear patterns or trends, indicating that the model fits the data well
+**Residuals vs. Fitted Values:** This plot shows no clear patterns or trends, indicating that the model fits the data well.
 
+## Conclusion
+
+The simple linear regression model demonstrates that the number of beers consumed is a statistically significant predictor of blood alcohol content. The adjusted R² of 0.7855 indicates that about 79% of the variability in BAC is explained by beer consumption alone. Assumptions of linearity, normality of residuals, and constant variance appear reasonably satisfied based on the diagnostic plots. Although this simple model fits the data well, real-world applications would benefit from more complex modeling and controlled study designs to account for additional variables and variability in BAC levels.
