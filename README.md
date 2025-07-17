@@ -10,5 +10,5 @@ This project implements a simple linear regression analysis using base R functio
 
 - `bac.csv`: Dataset containing blood alcohol content and number of beers consumed for 16 students.
 - `SimpleRegression.R`: R script implementing simple linear regression and helper functions.
-- 'Analysis.qmd`: Quarto document containing code, output, and narrative for the analysis.
+- `Analysis.qmd`: Quarto document containing code, output, and narrative for the analysis.
 - `Analysis.html`: Rendered HTML report generated from the Quarto document.
