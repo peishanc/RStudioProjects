@@ -7,7 +7,7 @@ editor: visual
 
 # Project 1 Analysis
 
-## Introduction
+## **Introduction**
 
 This report performs a simple linear regression analysis to examine the relationship between the number of beers consumed and measured blood alcohol content (bac). We used a dataset of 16 students and implemented the model using base R functions developed in SimpleRegression R script.
 
